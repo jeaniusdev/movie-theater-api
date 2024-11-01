@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use EchoLabs\Prism\Prism;
+use EchoLabs\Prism\Facades\PrismServer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        PrismServer::register(
+            'my-ai-model',
+            fn () => Prism::text()
+                ->using('anthropic', 'claude-3-sonnet-20240229')
+                ->withSystemPrompt('You are a helpful assistant.')
+        );
     }
 }

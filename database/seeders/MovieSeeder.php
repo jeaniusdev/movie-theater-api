@@ -16,16 +16,18 @@ class MovieSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 2; $i++) {
+        $movieTitles = [
+            'Forrest Gump',
+            'Inception',
+            'Fight Club',
+            'The Matrix',
+        ];
+
+        foreach (array_rand($movieTitles, 2) as $index) {
             Movie::create([
-                'name' => $faker->randomElement([
-                    'Forrest Gump',
-                    'Inception',
-                    'Fight Club',
-                    'The Matrix',
-                ]),
-                'genre' => $faker->randomElement(['Action', 'Comedy', 'Drama', 'Animation', 'Romance']),
-                'language' => $faker->randomElement(['English', 'Spanish', 'French', 'German']),
+                'name' => $movieTitles[$index],
+                'genre' => $faker->randomElement(['Action', 'Drama', 'Sci-Fi']),
+                'language' => 'English',
             ]);
         }
     }

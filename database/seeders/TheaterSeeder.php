@@ -16,9 +16,11 @@ class TheaterSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 2; $i++) {
+        $theaters = ['AMC', 'Regal', 'Cinemark'];
+
+        foreach (array_rand($theaters, 2) as $index) {
             Theater::create([
-                'name' => $faker->randomElement(['AMC', 'Regal', 'Cinemark']),
+                'name' => $theaters[$index],
                 'location' => $faker->address,
             ]);
         }

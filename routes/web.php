@@ -1,12 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TheaterController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TheaterController::class, 'index']);
 
-Route::post('/topSellingTheater', function () {
-    // 
-})->name('topSellingTheater');
-
+Route::post('/', [TheaterController::class, 'show'])->name('theater.show');
